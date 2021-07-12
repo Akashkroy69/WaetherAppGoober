@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Waether AppGoober</string>
+    <string name="enter_your_zipcode">Enter Your Zip Code</string>
+    <string name="zip_code">   zip code    </string>
+    <string name="how_s_the_weather">How\'s Weather?</string>
+    <string name="location_icon">Location Icon</string>
 </resources>
