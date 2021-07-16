@@ -19,7 +19,7 @@ class ForecastRepository {
     // Though our repository loads data from N/w or a database but to keep it simple we are loading data statically by
     // generating a list of random temperature bet 0 to 100 and modeling our data class with this list of temperature using a method
     // called loadForecast()
-    fun loadForecast() {
+    fun loadForecast(zipCode : String) {
         // generate a list of random temperatures
         val randomTemperature = List(7) { Random.nextFloat().rem(100) * 100 }
 

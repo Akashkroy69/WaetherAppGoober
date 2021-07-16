@@ -6,31 +6,52 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     private val forecastRepository = ForecastRepository()
 
     //region set up methods
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+      //Finding ids of enter zip code field and the button.
         val enterZipCodeField: EditText = findViewById(R.id.zipCodeId)
         val howIsWeatherButtonId: Button = findViewById(R.id.howIsWeatherButtonId)
+
+
         //Setting up On-Click Listener.
         howIsWeatherButtonId.setOnClickListener {
             val zipCode = enterZipCodeField.text.toString()
-            if (zipCode.length == 6) forecastRepository.loadForecast()
+            if (zipCode.length == 6) forecastRepository.loadForecast(zipCode)
             else Toast.makeText(this, R.string.zipcode_error_message, Toast.LENGTH_SHORT).show()
         }
+
+
+        //setting up Recycler view
+        // For setting up recycler view we need to: 1. create a reference for RV, 2. set up LayOut Manger
+        // 3. Set up RV Adapter-> For Adapter we need to set up : 1. Adapter, 2. ViewHolder 3. Item callback
+
+        //1. Creating a reference for recycler view.
+        val forecastItemsRVId: RecyclerView = findViewById(R.id.forecastItemRVId)
+        //2.setting up RV's layoutManager Property as Linear Layout Manager
+        forecastItemsRVId.layoutManager = LinearLayoutManager(this)
+
+
         //creating an observer
         val weeklyForecastObserver = Observer<List<DailyForecast>> {
             //It is used to update RecyclerView and lifecycle adapter.
-            Toast.makeText(this,"Forecast Loaded",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Forecast Loaded", Toast.LENGTH_SHORT).show()
         }
         forecastRepository.weeklyForecast.observe(this, weeklyForecastObserver)
     }
 
 
+
+    //region lifecycle other methods
     override fun onStart() {
         super.onStart()
     }
@@ -39,8 +60,6 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
     }
 
-    //endregion set up methods
-    // region tear up methods
     override fun onPause() {
         super.onPause()
     }
@@ -52,5 +71,5 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
     }
-    //endregion tear up methods
+    //endregion lifecycle other methods.
 }
