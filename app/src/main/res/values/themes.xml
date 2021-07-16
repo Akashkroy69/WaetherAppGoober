@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.WaetherAppGoober" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_500</item>
+        <item name="colorPrimary">#4B64F4</item>
+        <item name="colorPrimaryVariant">#2946E6</item>
         <item name="colorOnPrimary">@color/purple_500</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

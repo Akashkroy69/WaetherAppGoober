@@ -10,7 +10,7 @@ class ForecastRepository {
     //region PART b. Providing data to our activity
     //To provide data to our activity, we first need an object of LiveData class
 
-    // ?? -> 1. what is MutableLiveData 2. What is it doing here.
+    /*?? -> 1. what is MutableLiveData 2. What is it doing here.*/
     private val _weeklyForecast = MutableLiveData<List<DailyForecast>>()
     val weeklyForecast: LiveData<List<DailyForecast>> = _weeklyForecast
     //endregion
