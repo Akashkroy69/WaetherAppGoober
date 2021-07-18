@@ -20,9 +20,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-      //Finding ids for necessary view fields.
+
+        //Finding ids for necessary view fields from activity_main.xml
         val enterZipCodeField: EditText = findViewById(R.id.zipCodeId)
         val howIsWeatherButtonId: Button = findViewById(R.id.howIsWeatherButtonId)
+
 
 
         //Setting up On-Click Listener for the button
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+
         //setting up Recycler view
         // For setting up recycler view we need to: 1. create a reference for RV, 2. set up LayOut Manger
         // 3. Set up RV Adapter-> For Adapter we need to set up : 1. Adapter, 2. ViewHolder 3. Item callback
@@ -41,19 +44,27 @@ class MainActivity : AppCompatActivity() {
         val forecastItemsRVId: RecyclerView = findViewById(R.id.forecastItemRVId)
         //2.setting up RV's layoutManager Property as Linear Layout Manager
         forecastItemsRVId.layoutManager = LinearLayoutManager(this)
+        //3. Adapter. We created and set up the system for Adapter and ViewHolder which is needed by the RecyclerView
+        //see implementation in DailyForecastAdapter() class.
+        //A ref for the Adapter class
+        val dailyForecastAdapter = DailyForecastAdapter()
+        forecastItemsRVId.adapter = dailyForecastAdapter
+
 
 
         //creating an observer in context of LveData
         val weeklyForecastObserver = Observer<List<DailyForecast>> {
-            //It is used to update RecyclerView and lifecycle adapter.
-            Toast.makeText(this, "Forecast Loaded", Toast.LENGTH_SHORT).show()
+            //This field is used to update RecyclerView and lifecycle adapter.
+            //Toast.makeText(this, "Forecast Loaded", Toast.LENGTH_SHORT).show()
+
+            //we have an RV adapter.
+            dailyForecastAdapter.submitList(it)
         }
         forecastRepository.weeklyForecast.observe(this, weeklyForecastObserver)
     }
 
 
-
-    //region lifecycle other methods
+    //region lifecycle's other methods
     override fun onStart() {
         super.onStart()
     }
@@ -73,5 +84,5 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
     }
-    //endregion lifecycle other methods.
+    //endregion lifecycle's other methods.
 }

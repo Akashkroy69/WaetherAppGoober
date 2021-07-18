@@ -1,17 +1,37 @@
 package com.aks.waetherappgoober
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
 class DailyForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    //layout for representing view items has been created before implementing this method.
+    // Now we have to bind individual data coming from our data model with textViews in
+    //item_daily_forecast layout file. ViewHolder helps us in that.
+
+
+    //finding ids for textViews from item_daily_forecast
+    //Note: in activity we have context so we could use findByViewId directly,
+    // here we have to access the method using view <--- know more????????
+    private val tempTextId: TextView = view.findViewById(R.id.tempTextId)
+    private val descriptionTextId: TextView = view.findViewById(R.id.descriptionTextId)
+
+
+    //this method is called from Adapter, DailyForecastAdapter. This method helps us bind individual data Item
+    //coming from repository and data model with the views, textViews here, in the layout file,item_daily_forecast.
+    fun bind(dailyForecastItem: DailyForecast) {
+        tempTextId.text = dailyForecastItem.temperature.toString()
+        descriptionTextId.text = dailyForecastItem.description.toString()
+    }
 
 }
 
-//                                                                                 _> this constructor needs an instance of ItemCallback
-//                                                                                |
+//                                                                                   _> this constructor needs an instance of ItemCallback
+//                                                                                  |
 class DailyForecastAdapter() : ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
 
     //As we need a ItemCallback in ListAdapter constructor. So using a companion object we
@@ -35,10 +55,12 @@ class DailyForecastAdapter() : ListAdapter<DailyForecast, DailyForecastViewHolde
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyForecastViewHolder {
-        TODO("Not yet implemented")
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_daily_forecast, parent, false)
+        return DailyForecastViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: DailyForecastViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(getItem(position))
     }
 }

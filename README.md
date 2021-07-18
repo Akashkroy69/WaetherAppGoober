@@ -19,3 +19,21 @@ I am creating this app as part of my learning process. I have created some apps 
                act to show required output.
 
 
+# Some General set ups
+              -Layout file for MainActivity is inflated.
+              -Onclick listener is set up
+# Data Model and Repositories
+# Data Model
+    -This is a data class for modelling our data coming from repository which either loads data from network or local database.
+    -We crerated a data class called DailyForcast
+# Repository 
+    -We have defined ForecastRepository.kt for Repository.
+    -Our repository does 2 things: PART B. load data and model into data class.
+                                   PART A. Provides data to our activity.
+                                   
+    -PART B. For loading data and modeling it into the Data class;
+          - we are using a method to generate random temperature value for 7 days: loadForecast 
+          which generates random tem value in a list called randomTemperature.
+          -Later we are Mapping this list of temperatures to DailyForecast data class, with description string, using map collection method.
+           map returns a list of type DailyForecast which is referred by the variable forecastItems.
+
