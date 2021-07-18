@@ -1,6 +1,7 @@
 package com.aks.waetherappgoober
 
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -13,10 +14,11 @@ class DailyForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 //                                                                                |
 class DailyForecastAdapter() : ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
 
+    //As we need a ItemCallback in ListAdapter constructor. So using a companion object we
     companion object {
         val DIFF_CONFIG = object : DiffUtil.ItemCallback<DailyForecast>() {
             override fun areItemsTheSame(oldItem: DailyForecast, newItem: DailyForecast): Boolean {
-                // in Kotlin === is used to see whether the two instances, not just content, are exactly same or not?
+                // in Kotlin === is used to see whether both the references are referring to the exact same instance or not?
                 return oldItem === newItem
             }
 
@@ -30,5 +32,13 @@ class DailyForecastAdapter() : ListAdapter<DailyForecast, DailyForecastViewHolde
             }
 
         }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyForecastViewHolder {
+        TODO("Not yet implemented")
+    }
+
+    override fun onBindViewHolder(holder: DailyForecastViewHolder, position: Int) {
+        TODO("Not yet implemented")
     }
 }

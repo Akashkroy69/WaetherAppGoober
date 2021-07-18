@@ -10,20 +10,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
+    //a reference for the forecast Repository.
     private val forecastRepository = ForecastRepository()
 
     //region set up methods
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        //Setting up for inflating a layout.
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-      //Finding ids of enter zip code field and the button.
+      //Finding ids for necessary view fields.
         val enterZipCodeField: EditText = findViewById(R.id.zipCodeId)
         val howIsWeatherButtonId: Button = findViewById(R.id.howIsWeatherButtonId)
 
 
-        //Setting up On-Click Listener.
+        //Setting up On-Click Listener for the button
         howIsWeatherButtonId.setOnClickListener {
             val zipCode = enterZipCodeField.text.toString()
             if (zipCode.length == 6) forecastRepository.loadForecast(zipCode)
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         forecastItemsRVId.layoutManager = LinearLayoutManager(this)
 
 
-        //creating an observer
+        //creating an observer in context of LveData
         val weeklyForecastObserver = Observer<List<DailyForecast>> {
             //It is used to update RecyclerView and lifecycle adapter.
             Toast.makeText(this, "Forecast Loaded", Toast.LENGTH_SHORT).show()

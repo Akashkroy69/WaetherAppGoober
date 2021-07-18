@@ -15,7 +15,7 @@ class ForecastRepository {
     val weeklyForecast: LiveData<List<DailyForecast>> = _weeklyForecast
     //endregion
 
-    //region PART a load data and model into data class
+    //region PART A load data and model into data class
     // Though our repository loads data from N/w or a database but to keep it simple we are loading data statically by
     // generating a list of random temperature bet 0 to 100 and modeling our data class with this list of temperature using a method
     // called loadForecast()
@@ -31,6 +31,6 @@ class ForecastRepository {
         _weeklyForecast.value = forecastItems  //<-- setting up this automatically sets up weeklyForecast
     }
 
-//endregion part a
+//endregion part A
 
 }
