@@ -34,6 +34,9 @@ I am creating this app as part of my learning process. I have created some apps 
     -PART B. For loading data and modeling it into the Data class;
           - we are using a method to generate random temperature value for 7 days: loadForecast 
           which generates random tem value in a list called randomTemperature.
-          -Later we are Mapping this list of temperatures to DailyForecast data class, with description string, using map collection method.
-           map returns a list of type DailyForecast which is referred by the variable forecastItems.
+          -Later we are Mapping this list of temperatures to DailyForecast data class, with description string, 
+           using map collection method. map returns a list of type DailyForecast which is referred by the variable forecastItems.
+    -PART A. To provide data to our activity we are setting up LiveData; 1 mutableLiveData and 1 immutable LiveData
+             which is being set by the loadForecast()
+   
 
