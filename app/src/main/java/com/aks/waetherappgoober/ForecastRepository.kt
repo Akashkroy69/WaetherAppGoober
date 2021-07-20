@@ -14,6 +14,8 @@ class ForecastRepository {
     private val _weeklyForecast = MutableLiveData<List<DailyForecast>>()
     val weeklyForecast: LiveData<List<DailyForecast>> = _weeklyForecast
 
+
+
     // PART A load data and model into data class
     // Though our repository loads data from N/w or a database but to keep it simple we are loading data statically by
     // generating a list of random temperature bet 0 to 100 and modeling our data class with this list of temperature using a method
@@ -27,6 +29,7 @@ class ForecastRepository {
         val forecastItems = randomTemperature.map {
             DailyForecast(it, "Partly Cloudy")
         }
+
         //forecastItems is a list of DailyForecast
         _weeklyForecast.value = forecastItems  //<-- setting up this automatically sets up weeklyForecast
     }

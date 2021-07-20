@@ -54,6 +54,7 @@ class DailyForecastAdapter() : ListAdapter<DailyForecast, DailyForecastViewHolde
         }
     }
 
+    //member methods in RecyclerView.Adapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyForecastViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_daily_forecast, parent, false)
