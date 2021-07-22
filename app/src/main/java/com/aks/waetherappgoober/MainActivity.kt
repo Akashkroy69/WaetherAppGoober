@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         val weeklyForecastObserver = Observer<List<DailyForecast>> {
             //This field is used to update RecyclerView and lifecycle adapter.
             //Toast.makeText(this, "Forecast Loaded", Toast.LENGTH_SHORT).show()
-            Log.i("observer","")
+
             //we have an RV adapter.
             dailyForecastAdapter.submitList(it)
         }

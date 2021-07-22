@@ -2,4 +2,5 @@
 <resources>
     <dimen name="title_text_size">30sp</dimen>
     <dimen name="location_Icon_size">50sp</dimen>
+    <dimen name="margin">16dp</dimen>
 </resources>

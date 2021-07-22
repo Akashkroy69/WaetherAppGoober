@@ -5,4 +5,8 @@
     <string name="how_s_the_weather">How is Weather?</string>
     <string name="location_icon">Location Icon</string>
     <string name="zipcode_error_message">Please Enter a valid Zip Code!!</string>
+    <string name="text_digit_size">70.0</string>
+    <string name="description_string_demo">Partly Cloudy</string>
+    <string name="demo_temp">70.0</string>
+    <string name="description_demo_string">Mostly Cloudy</string>
 </resources>

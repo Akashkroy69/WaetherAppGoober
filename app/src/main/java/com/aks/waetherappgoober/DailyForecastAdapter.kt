@@ -24,14 +24,14 @@ class DailyForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     //this method is called from Adapter, DailyForecastAdapter. This method helps us bind individual data Item
     //coming from repository and data model with the views, textViews here, in the layout file,item_daily_forecast.
     fun bind(dailyForecastItem: DailyForecast) {
-        tempTextId.text = dailyForecastItem.temperature.toString()
+        tempTextId.text = String.format("%.2f", dailyForecastItem.temperature)
         descriptionTextId.text = dailyForecastItem.description.toString()
     }
 
 }
 
-//                                                                                   _> this constructor needs an instance of ItemCallback
-//                                                                                  |
+//                                                                                  _> this constructor needs an instance of ItemCallback
+//                                                                                 |
 class DailyForecastAdapter() : ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
 
     //As we need a ItemCallback in ListAdapter constructor. So using a companion object we
@@ -62,6 +62,8 @@ class DailyForecastAdapter() : ListAdapter<DailyForecast, DailyForecastViewHolde
     }
 
     override fun onBindViewHolder(holder: DailyForecastViewHolder, position: Int) {
+        //through dailyForecastAdapter.submitList(it) in Observer anonymous class using 'it' we are passing a List<DailyForecast>
+        //position traverse through the list which start with index 0.
         holder.bind(getItem(position))
     }
 }
