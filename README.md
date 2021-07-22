@@ -1,5 +1,5 @@
 # WeatherApp
-Weather App following standard practices
+Weather App following standard practices, standard App Architecture.
 
 I am creating this app as part of my learning process. I have created some apps earlier. In this app I am taking care of the standard practices while making the app by-
 
