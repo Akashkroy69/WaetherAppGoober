@@ -38,5 +38,7 @@ I am creating this app as part of my learning process. I have created some apps 
            using map collection method. map returns a list of type DailyForecast which is referred by the variable forecastItems.
     -PART A. To provide data to our activity we are setting up LiveData; 1 mutableLiveData and 1 immutable LiveData
              which is being set by the loadForecast()
+    
+    Q LiveData deprecated? 
    
 
