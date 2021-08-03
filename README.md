@@ -40,5 +40,6 @@ I am creating this app as part of my learning process. I have created some apps 
              which is being set by the loadForecast()
     
     Q LiveData deprecated? 
+     - I learnt that instaead of LiveData we can use another system which can provide us a system to provide Data to activity by taking it from Repo.
    
 
