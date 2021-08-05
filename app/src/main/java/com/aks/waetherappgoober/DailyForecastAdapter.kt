@@ -32,7 +32,8 @@ class DailyForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
 //                                                                                  _> this constructor needs an instance of ItemCallback
 //                                                                                 |
-class DailyForecastAdapter() : ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
+class DailyForecastAdapter(private var clickHandler: (DailyForecast) -> Unit) :
+    ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
 
     //As we need a ItemCallback in ListAdapter constructor. So using a companion object we are creating an ItemCallback
     companion object {
@@ -65,5 +66,8 @@ class DailyForecastAdapter() : ListAdapter<DailyForecast, DailyForecastViewHolde
         //through dailyForecastAdapter.submitList(it) in Observer anonymous class using 'it' we are passing a List<DailyForecast>
         //position traverse through the list which start with index 0.
         holder.bind(getItem(position))
+        holder.itemView.setOnClickListener {
+            clickHandler(getItem(position))
+        }
     }
 }

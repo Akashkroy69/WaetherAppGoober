@@ -46,7 +46,9 @@ class MainActivity : AppCompatActivity() {
         //3. Adapter. We created and set up the system for Adapter and ViewHolder which is needed by the RecyclerView
         //see implementation in DailyForecastAdapter() class.
         //A ref for the Adapter class
-        val dailyForecastAdapter = DailyForecastAdapter()
+        val dailyForecastAdapter = DailyForecastAdapter() {
+            Toast.makeText(this, "Item Clicked", Toast.LENGTH_SHORT).show()
+        }
         forecastItemsRVId.adapter = dailyForecastAdapter
 
 
