@@ -26,7 +26,7 @@ class ForecastRepository {
 
         // Mapping this list of temperature and description string to DailyForecast data class.
         //map returns a list of type DailyForecast which is referred by the variable forecastItems.
-        val forecastItems = randomTemperature.map {
+        val forecastItems   = randomTemperature.map {
             DailyForecast(it, "Partly Cloudy")
         }
 

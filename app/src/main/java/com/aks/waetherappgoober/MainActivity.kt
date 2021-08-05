@@ -27,14 +27,12 @@ class MainActivity : AppCompatActivity() {
         val howIsWeatherButtonId: Button = findViewById(R.id.howIsWeatherButtonId)
 
 
-
         //Setting up On-Click Listener for the button
         howIsWeatherButtonId.setOnClickListener {
             val zipCode = enterZipCodeField.text.toString()
             if (zipCode.length == 6) forecastRepository.loadForecast(zipCode)
             else Toast.makeText(this, R.string.zipcode_error_message, Toast.LENGTH_SHORT).show()
         }
-
 
 
         //setting up Recycler view
@@ -50,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         //A ref for the Adapter class
         val dailyForecastAdapter = DailyForecastAdapter()
         forecastItemsRVId.adapter = dailyForecastAdapter
-
 
 
         //creating an observer in context of LveData

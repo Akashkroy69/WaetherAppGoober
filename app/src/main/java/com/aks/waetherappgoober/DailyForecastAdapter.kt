@@ -25,7 +25,7 @@ class DailyForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     //coming from repository and data model with the views, textViews here, in the layout file,item_daily_forecast.
     fun bind(dailyForecastItem: DailyForecast) {
         tempTextId.text = String.format("%.2f", dailyForecastItem.temperature)
-        descriptionTextId.text = dailyForecastItem.description.toString()
+        descriptionTextId.text = dailyForecastItem.description
     }
 
 }
@@ -34,7 +34,7 @@ class DailyForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 //                                                                                 |
 class DailyForecastAdapter() : ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
 
-    //As we need a ItemCallback in ListAdapter constructor. So using a companion object we
+    //As we need a ItemCallback in ListAdapter constructor. So using a companion object we are creating an ItemCallback
     companion object {
         val DIFF_CONFIG = object : DiffUtil.ItemCallback<DailyForecast>() {
             override fun areItemsTheSame(oldItem: DailyForecast, newItem: DailyForecast): Boolean {
