@@ -38,6 +38,8 @@ I am creating this app as part of my learning process. I have created some apps 
            using map collection method. map returns a list of type DailyForecast which is referred by the variable forecastItems.
     -PART A. To provide data to our activity we are setting up LiveData; 1 mutableLiveData and 1 immutable LiveData
              which is being set by the loadForecast()
+            - After setting up LiveData in loadForecast, we need to set up observe() and Observer(optional, an anonymous class object for
+              Observer can be passed in to the observe method directly). These has to be used by the LiveData.
     
     Q LiveData deprecated? 
    

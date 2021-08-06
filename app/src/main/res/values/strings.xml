@@ -9,4 +9,6 @@
     <string name="description_string_demo">Partly Cloudy</string>
     <string name="demo_temp">70.0</string>
     <string name="description_demo_string">Mostly Cloudy</string>
+
+    <string name="string_format_for_toasting_values_fromForecastItem">Forecast: %1$.2f,  %2$s</string>
 </resources>
