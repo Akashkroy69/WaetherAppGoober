@@ -48,4 +48,10 @@ I am creating this app as part of my learning process. I have created some apps 
       -we added a function getTempDescription() to get customized description about the temperature.
 
 # Week 4 Intents, Menu/dialogues, shared preferences and multiple activity
+       This week we will;
+       -create a new Activity ForecastDetailsActivity
+       -Using an intent we will pass 'clicked forecast data' to ForecastDetails Activity and display it.
+       -Create a menu with single item to control our temp display units.
+       -Show an alert dialogue when settings item is clicked to select display setting.
+       -Update UI formatting based on selected setting.
       - 
