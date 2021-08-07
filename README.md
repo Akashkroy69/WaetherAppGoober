@@ -45,4 +45,7 @@ I am creating this app as part of my learning process. I have created some apps 
 # Week 3 Summary
       -We implemented a a recycler view, An adapter using ListAdapter, ViewHolder and layout for binding data item with viewholder,.
       -We efficiently binded the data item wih the viewholder and implemented a clickhandler too.
-      -we added a  function getTempDescription() to get customized description about the temperature.
+      -we added a function getTempDescription() to get customized description about the temperature.
+
+# Week 4 Intents, Menu/dialogues, shared preferences and multiple activity
+      - 
