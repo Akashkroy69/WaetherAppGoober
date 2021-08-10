@@ -33,7 +33,7 @@ class DailyForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 //                                                                                  _> this constructor needs an instance of ItemCallback
 //                                                                                 |
 class DailyForecastAdapter(private var clickHandler: (DailyForecast) -> Unit) :
-    ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
+                          ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
 
     //As we need a ItemCallback in ListAdapter constructor. So using a companion object we are creating an ItemCallback
     companion object {

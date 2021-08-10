@@ -54,4 +54,5 @@ I am creating this app as part of my learning process. I have created some apps 
        -Create a menu with single item to control our temp display units.
        -Show an alert dialogue when settings item is clicked to select display setting.
        -Update UI formatting based on selected setting.
-      - 
+       
+       links for note on Intent: https://docs.google.com/document/d/1fEfZFK6OGns-hRqKRs-6FinxzwFDWqNhNq34sCZcOYo/edit
