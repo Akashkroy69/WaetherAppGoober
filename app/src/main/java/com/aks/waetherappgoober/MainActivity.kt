@@ -1,5 +1,6 @@
 package com.aks.waetherappgoober
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.aks.waetherappgoober.details.ForecastDetailsActivity
 
 class MainActivity : AppCompatActivity() {
     //a reference for the forecast Repository.
@@ -53,6 +55,9 @@ class MainActivity : AppCompatActivity() {
                 forecastItem.description
             )
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, ForecastDetailsActivity::class.java)
+            startActivity(intent)
         }
         forecastItemsRVId.adapter = dailyForecastAdapter
 

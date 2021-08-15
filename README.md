@@ -59,6 +59,12 @@ I am creating this app as part of my learning process. I have created some apps 
                       Files:   It is generally used to save media files and documents.
                                it can also be used to save data for settings or data to be used by our apps.
                       SharedPreferences: for saving simple data, like settings.
+                      
        -Update UI formatting based on selected setting.
        
        links for note on Intent: https://docs.google.com/document/d/1fEfZFK6OGns-hRqKRs-6FinxzwFDWqNhNq34sCZcOYo/edit
+       
+       - Created a new package called details.
+       - added a new Activity called ForecastDetailsActivity.kt in it
+       - added an Explicit intent inside the clickHandler method(An anonymous class which is being passed as an arguement) of DailyForecastAdapter
+
