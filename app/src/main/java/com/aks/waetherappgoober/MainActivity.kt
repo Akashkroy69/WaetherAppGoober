@@ -56,7 +56,6 @@ class MainActivity : AppCompatActivity() {
         }
         forecastItemsRVId.adapter = dailyForecastAdapter
 
-
         //creating an observer in context of LveData
         val weeklyForecastObserver = Observer<List<DailyForecast>> {
             //This field is used to update RecyclerView and lifecycle adapter.

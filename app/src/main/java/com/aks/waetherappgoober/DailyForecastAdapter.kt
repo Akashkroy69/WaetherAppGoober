@@ -55,6 +55,7 @@ class DailyForecastAdapter(private var clickHandler: (DailyForecast) -> Unit) :
         }
     }
 
+
     //member methods in RecyclerView.Adapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyForecastViewHolder {
         val itemView =
