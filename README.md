@@ -68,3 +68,11 @@ I am creating this app as part of my learning process. I have created some apps 
        - added a new Activity called ForecastDetailsActivity.kt in it
        - added an Explicit intent inside the clickHandler method(An anonymous class which is being passed as an arguement) of DailyForecastAdapter
 
+       - Added a passForecastDetailsUsingIntent() method for the purpose of making an intent instance in order to navigate to 
+       ForecastDetailsActivity 
+                    - here we are creating an instance of intent.
+                    - with intent we are adding some data which will travel with the intent using putExtra()
+                    - in ForecastDetailsActivity class we can access the data travelling with intent instance using intent.getFloatExtra 
+                    or getIntent.getFloatExtra()
+       - we craeted a kotlin file called ForecastUtils in which we created a method called formatTempForDisplay() to create right format for 
+       temperature value. It can be used across the project to create format for temp.

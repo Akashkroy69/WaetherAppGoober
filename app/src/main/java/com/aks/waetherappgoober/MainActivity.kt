@@ -3,7 +3,6 @@ package com.aks.waetherappgoober
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -56,8 +55,7 @@ class MainActivity : AppCompatActivity() {
             )
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
-            val intent = Intent(this, ForecastDetailsActivity::class.java)
-            startActivity(intent)
+            passForecastDetailsUsingIntent(forecastItem)
         }
         forecastItemsRVId.adapter = dailyForecastAdapter
 
@@ -70,6 +68,19 @@ class MainActivity : AppCompatActivity() {
             dailyForecastAdapter.submitList(it)
         }
         forecastRepository.weeklyForecast.observe(this, weeklyForecastObserver)
+
+
+    }
+
+    private fun passForecastDetailsUsingIntent(forecastItem: DailyForecast) {
+        val intentForForecastDetailsActivity = Intent(this, ForecastDetailsActivity::class.java)
+
+        //for attaching extra values and data with the intent which is being used to invoke an Activity, here ForecastDetailsActivity
+        //here we are going to pass temperature and description value using intent
+        intentForForecastDetailsActivity.putExtra("key_temp", forecastItem.temperature)
+        intentForForecastDetailsActivity.putExtra("key_description", forecastItem.description)
+
+        startActivity(intentForForecastDetailsActivity)
     }
 
 

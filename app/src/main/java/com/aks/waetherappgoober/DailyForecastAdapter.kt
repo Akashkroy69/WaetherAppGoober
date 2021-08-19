@@ -24,7 +24,7 @@ class DailyForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     //this method is called from Adapter, DailyForecastAdapter. This method helps us bind individual data Item
     //coming from repository and data model with the views, textViews here, in the layout file,item_daily_forecast.
     fun bind(dailyForecastItem: DailyForecast) {
-        tempTextId.text = String.format("%.2f", dailyForecastItem.temperature)
+        tempTextId.text = formatTempForDisplay(dailyForecastItem.temperature)
         descriptionTextId.text = dailyForecastItem.description
     }
 
@@ -33,7 +33,7 @@ class DailyForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 //                                                                                  _> this constructor needs an instance of ItemCallback
 //                                                                                 |
 class DailyForecastAdapter(private var clickHandler: (DailyForecast) -> Unit) :
-                          ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
+    ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
 
     //As we need a ItemCallback in ListAdapter constructor. So using a companion object we are creating an ItemCallback
     companion object {
