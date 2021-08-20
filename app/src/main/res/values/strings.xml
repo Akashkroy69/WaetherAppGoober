@@ -13,4 +13,5 @@
     <string name="title_for_forecastDetailActivity">Forecast Details</string>
 
     <string name="string_format_for_toasting_values_fromForecastItem">Forecast: %1$.2f,  %2$s</string>
+    <string name="display_units">Display Units</string>
 </resources>

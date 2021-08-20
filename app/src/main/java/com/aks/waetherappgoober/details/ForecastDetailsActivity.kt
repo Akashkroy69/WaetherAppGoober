@@ -1,8 +1,14 @@
 package com.aks.waetherappgoober.details
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.aks.waetherappgoober.R
 import com.aks.waetherappgoober.formatTempForDisplay
 
@@ -26,5 +32,51 @@ class ForecastDetailsActivity : AppCompatActivity() {
 
         tempText.text = formatTempForDisplay(temp)
         descriptionText.text = intent.getStringExtra("key_description")
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater =
+            menuInflater //<- This is Kotlin's idiomatic way to access getMenuInflater()
+        inflater.inflate(R.menu.setting_menu, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.displayUnitItemId -> {
+                showDisplaySettingDialog()
+                true //This will show that we have handled the click
+            }
+            else -> onOptionsItemSelected(item)
+        }
+    }
+
+    //for building a dialog
+    private fun showDisplaySettingDialog() {
+        val dialogBuilder = AlertDialog.Builder(this)
+            .setTitle("Choose a Display Unit")
+            .setMessage("What kind of display Unit you will prefer: ")
+            .setPositiveButton("F°", object : DialogInterface.OnClickListener {
+                override fun onClick(dialog: DialogInterface?, which: Int) {
+                    Toast.makeText(this@ForecastDetailsActivity, "F° Selected", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+            })
+            //We can write a lambda in place of the second argument written in setPositiveButton as following
+            .setNeutralButton("C°") { dialog, which ->
+                Toast.makeText(this@ForecastDetailsActivity, "C° Selected", Toast.LENGTH_SHORT)
+                    .show()
+            }
+            .setOnDismissListener {
+                Toast.makeText(
+                    this,
+                    "Setting change will come in action after app restart.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        dialogBuilder.show()
     }
 }
