@@ -58,6 +58,8 @@ class ForecastDetailsActivity : AppCompatActivity() {
         val dialogBuilder = AlertDialog.Builder(this)
             .setTitle("Choose a Display Unit")
             .setMessage("What kind of display Unit you will prefer: ")
+
+            //Tips: Do not convert this in to lambda. I have left this way to understand what is going on under the hood.
             .setPositiveButton("F°", object : DialogInterface.OnClickListener {
                 override fun onClick(dialog: DialogInterface?, which: Int) {
                     Toast.makeText(this@ForecastDetailsActivity, "F° Selected", Toast.LENGTH_SHORT)
@@ -75,6 +77,7 @@ class ForecastDetailsActivity : AppCompatActivity() {
                     this,
                     "Setting change will come in action after app restart.",
                     Toast.LENGTH_SHORT
+
                 ).show()
             }
         dialogBuilder.show()
