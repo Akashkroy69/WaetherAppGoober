@@ -13,13 +13,13 @@ class TempDisplaySettingManager(context: Context) {
     //A method using which the this file can be edited or we can say that using which we can add some
     //data in the file.
     fun updateSetting(setting: TempDisplaySetting) {
-        preferences.edit().putString("key_temp_display", setting.name).commit()
+        preferences.edit().putString("key_temp_display_unit", setting.name).commit()
     }
 
     // To retrieve setting
     fun retrieveSetting(): TempDisplaySetting {
         val settingValue =
-            preferences.getString("key_temp_display", TempDisplaySetting.Fahrenheit.name)
+            preferences.getString("key_temp_display_unit", TempDisplaySetting.Fahrenheit.name)
                 ?: TempDisplaySetting.Fahrenheit.name
 
         return TempDisplaySetting.valueOf(settingValue) //valueOf is method for enum class. We are passing a string

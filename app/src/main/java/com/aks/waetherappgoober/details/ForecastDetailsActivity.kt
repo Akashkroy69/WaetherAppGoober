@@ -10,9 +10,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.aks.waetherappgoober.R
+import com.aks.waetherappgoober.TempDisplaySetting
+import com.aks.waetherappgoober.TempDisplaySettingManager
 import com.aks.waetherappgoober.formatTempForDisplay
 
 class ForecastDetailsActivity : AppCompatActivity() {
+    private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forecast_deatails)
@@ -32,6 +37,9 @@ class ForecastDetailsActivity : AppCompatActivity() {
 
         tempText.text = formatTempForDisplay(temp)
         descriptionText.text = intent.getStringExtra("key_description")
+
+        //instantiating an instance for TempDisplaySettingManager
+        tempDisplaySettingManager = TempDisplaySettingManager(this)
 
     }
 
@@ -62,15 +70,14 @@ class ForecastDetailsActivity : AppCompatActivity() {
             //Tips: Do not convert this in to lambda. I have left this way to understand what is going on under the hood.
             .setPositiveButton("F°", object : DialogInterface.OnClickListener {
                 override fun onClick(dialog: DialogInterface?, which: Int) {
-                    Toast.makeText(this@ForecastDetailsActivity, "F° Selected", Toast.LENGTH_SHORT)
-                        .show()
+                    tempDisplaySettingManager.updateSetting(TempDisplaySetting.Fahrenheit)
                 }
 
             })
             //We can write a lambda in place of the second argument written in setPositiveButton as following
             .setNeutralButton("C°") { dialog, which ->
-                Toast.makeText(this@ForecastDetailsActivity, "C° Selected", Toast.LENGTH_SHORT)
-                    .show()
+                tempDisplaySettingManager.updateSetting(TempDisplaySetting.Celsius)
+
             }
             .setOnDismissListener {
                 Toast.makeText(
