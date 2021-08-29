@@ -1,6 +1,7 @@
 package com.aks.waetherappgoober
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.core.content.edit
 
 enum class TempDisplaySetting {
@@ -8,7 +9,7 @@ enum class TempDisplaySetting {
 }
 
 class TempDisplaySettingManager(context: Context) {
-    val preferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
+    private val preferences: SharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
 
     //A method using which the this file can be edited or we can say that using which we can add some
     //data in the file.

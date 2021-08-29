@@ -8,7 +8,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class DailyForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class DailyForecastViewHolder(
+    view: View,
+    private val tempDisplaySettingManager: TempDisplaySettingManager
+) :
+    RecyclerView.ViewHolder(view) {
     //layout for representing view items has been created before implementing this method.
     // Now we have to bind individual data coming from our data model with textViews in
     //item_daily_forecast layout file. ViewHolder helps us in that.
@@ -24,16 +28,22 @@ class DailyForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     //this method is called from Adapter, DailyForecastAdapter. This method helps us bind individual data Item
     //coming from repository and data model with the views, textViews here, in the layout file,item_daily_forecast.
     fun bind(dailyForecastItem: DailyForecast) {
-        tempTextId.text = formatTempForDisplay(dailyForecastItem.temperature)
+        tempTextId.text = formatTempForDisplay(
+            dailyForecastItem.temperature,
+            tempDisplaySettingManager.retrieveSetting()
+        )
         descriptionTextId.text = dailyForecastItem.description
     }
 
 }
 
-//                                                                                  _> this constructor needs an instance of ItemCallback
+//                                                                                  _> this constructor of ListAdapter needs an instance of ItemCallback
 //                                                                                 |
-class DailyForecastAdapter(private var clickHandler: (DailyForecast) -> Unit) :
-                         ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
+class DailyForecastAdapter(
+    private val tempDisplaySettingManager: TempDisplaySettingManager,
+    private var clickHandler: (DailyForecast) -> Unit
+
+) : ListAdapter<DailyForecast, DailyForecastViewHolder>(DIFF_CONFIG) {
 
     //As we need a ItemCallback in ListAdapter constructor. So using a companion object we are creating an ItemCallback
     companion object {
@@ -60,7 +70,7 @@ class DailyForecastAdapter(private var clickHandler: (DailyForecast) -> Unit) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyForecastViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.item_daily_forecast, parent, false)
-        return DailyForecastViewHolder(itemView)
+        return DailyForecastViewHolder(itemView, tempDisplaySettingManager)
     }
 
     override fun onBindViewHolder(holder: DailyForecastViewHolder, position: Int) {

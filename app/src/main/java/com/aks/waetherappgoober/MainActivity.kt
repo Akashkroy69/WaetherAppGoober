@@ -1,11 +1,16 @@
 package com.aks.waetherappgoober
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,12 +20,18 @@ class MainActivity : AppCompatActivity() {
     //a reference for the forecast Repository.
     private val forecastRepository = ForecastRepository()
 
+    //A reference for TempDisplaySettingManager
+    private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
+
     //region set up methods
     override fun onCreate(savedInstanceState: Bundle?) {
 
         //Setting up for inflating a layout.
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //Instantiating tempDisplaySettingManager to be used in the adapter and ViewHolder
+        tempDisplaySettingManager = TempDisplaySettingManager(this)
 
 
         //Finding ids for necessary view fields from activity_main.xml
@@ -47,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         //3. Adapter. We created and set up the system for Adapter and ViewHolder which is needed by the RecyclerView
         //see implementation in DailyForecastAdapter() class.
         //A ref for the Adapter class
-        val dailyForecastAdapter = DailyForecastAdapter() { forecastItem ->
+        val dailyForecastAdapter = DailyForecastAdapter(tempDisplaySettingManager) { forecastItem ->
             val message = getString(
                 R.string.string_format_for_toasting_values_fromForecastItem,
                 forecastItem.temperature,
@@ -72,6 +83,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //method for navigating to a new Activity using an intent.
     private fun passForecastDetailsUsingIntent(forecastItem: DailyForecast) {
         val intentForForecastDetailsActivity = Intent(this, ForecastDetailsActivity::class.java)
 
@@ -82,6 +94,26 @@ class MainActivity : AppCompatActivity() {
 
         startActivity(intentForForecastDetailsActivity)
     }
+
+    //For adding a drop down Option Menu
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater =
+            menuInflater //<- This is Kotlin's idiomatic way to access getMenuInflater()
+        inflater.inflate(R.menu.setting_menu, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.displayUnitItemId -> {
+                showDisplaySettingDialog(this,tempDisplaySettingManager)
+                true //This will show that we have handled the click
+            }
+            else -> onOptionsItemSelected(item)
+        }
+    }
+
 
 
     //region lifecycle's other methods
