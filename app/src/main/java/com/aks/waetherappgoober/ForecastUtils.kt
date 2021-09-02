@@ -2,6 +2,8 @@ package com.aks.waetherappgoober
 
 import android.content.Context
 import android.content.DialogInterface
+import android.view.Menu
+import android.view.MenuInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 
@@ -17,7 +19,10 @@ fun formatTempForDisplay(temp: Float, tempDisplaySetting: TempDisplaySetting): S
 }
 
 //for building a dialog which will be called from onOptionsItemSelected
-fun showDisplaySettingDialog(context: Context, tempDisplaySettingManager: TempDisplaySettingManager) {
+fun showDisplaySettingDialog(
+    context: Context,
+    tempDisplaySettingManager: TempDisplaySettingManager
+) {
     val dialogBuilder = AlertDialog.Builder(context)
         .setTitle("Choose a Display Unit")
         .setMessage("What kind of display Unit you will prefer: ")
