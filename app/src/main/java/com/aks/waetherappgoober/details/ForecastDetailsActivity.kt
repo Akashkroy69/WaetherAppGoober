@@ -3,6 +3,7 @@ package com.aks.waetherappgoober.details
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -15,6 +16,8 @@ import com.aks.waetherappgoober.TempDisplaySettingManager
 import com.aks.waetherappgoober.formatTempForDisplay
 
 class ForecastDetailsActivity : AppCompatActivity() {
+    val TAG = "weatherLogCat"
+
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
 
 
@@ -89,5 +92,45 @@ class ForecastDetailsActivity : AppCompatActivity() {
                 ).show()
             }
         dialogBuilder.show()
+    }
+
+    //region lifecycle's other methods
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "In ForecastDetailsActivity: onStart")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "In ForecastDetailsActivity: onResume")
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "In ForecastDetailsActivity: onPause")
+
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("weatherLogCat", "Hello there")
+        super.onSaveInstanceState(outState)
+        Log.d(TAG, "In ForecastDetailsActivity: onSaveInstanceState")
+
+    }
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        Log.d(TAG, "ForecastDetailsActivity : onRestoreInstanceState() ")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "In ForecastDetailsActivity: onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "In ForecastDetailsActivity: onDestroy")
+
     }
 }

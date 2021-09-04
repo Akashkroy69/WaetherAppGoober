@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aks.waetherappgoober.details.ForecastDetailsActivity
 
 class MainActivity : AppCompatActivity() {
+    val TAG = "weatherLogCat"
     //a reference for the forecast Repository.
     private val forecastRepository = ForecastRepository()
 
@@ -45,6 +47,8 @@ class MainActivity : AppCompatActivity() {
             if (zipCode.length == 6) forecastRepository.loadForecast(zipCode)
             else Toast.makeText(this, R.string.zipcode_error_message, Toast.LENGTH_SHORT).show()
         }
+
+        Log.d(TAG, "In MainActivity: onCreate")
 
 
         //setting up Recycler view
@@ -119,22 +123,41 @@ class MainActivity : AppCompatActivity() {
     //region lifecycle's other methods
     override fun onStart() {
         super.onStart()
+        Log.d(TAG, "In MainActivity: onStart")
+
     }
 
     override fun onResume() {
         super.onResume()
+        Log.d(TAG, "In MainActivity: onResume")
+
     }
 
     override fun onPause() {
         super.onPause()
+        Log.d(TAG, "In MainActivity: onPause")
+
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("weatherLogCat", "Hello there")
+        super.onSaveInstanceState(outState)
+        Log.d(TAG, "In MainActivity: onSaveInstanceState")
+
+    }
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        Log.d(TAG, "MainActivity : onRestoreInstanceState() ")
     }
 
     override fun onStop() {
         super.onStop()
+        Log.d(TAG, "In MainActivity: onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        Log.d(TAG, "In MainActivity: onDestroy")
+
     }
     //endregion lifecycle's other methods.
 }
