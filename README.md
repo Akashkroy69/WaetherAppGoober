@@ -76,3 +76,14 @@ I am creating this app as part of my learning process. I have created some apps 
                     or getIntent.getFloatExtra()
        - we craeted a kotlin file called ForecastUtils in which we created a method called formatTempForDisplay() to create right format for 
        temperature value. It can be used across the project to create format for temp.
+       
+ #21/09/21:
+         -Earlier I tried to add fragment to MainActivity using XML.
+         But later I added fragment progmatically. For that I used following code
+         supportFragmentManager
+             .beginTransaction()
+             .add(R.id.activeMainRootViewId, LocationEnteryFragment)
+             .commit()
+         This code will add the fragment to the MainActivity but the fragment will come over the other UI elements.
+         To resolve this issue we have declared a view component in the activity_main.xml file; FrameLayout
+       

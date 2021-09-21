@@ -16,9 +16,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aks.waetherappgoober.details.ForecastDetailsActivity
+import com.aks.waetherappgoober.location.LocationEntryFragment
 
 class MainActivity : AppCompatActivity() {
     val TAG = "weatherLogCat"
+
     //a reference for the forecast Repository.
     private val forecastRepository = ForecastRepository()
 
@@ -84,7 +86,10 @@ class MainActivity : AppCompatActivity() {
         }
         forecastRepository.weeklyForecast.observe(this, weeklyForecastObserver)
 
-
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragmentLocationEntryId, LocationEntryFragment())
+            .commit()
     }
 
     //method for navigating to a new Activity using an intent.
@@ -111,13 +116,12 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.displayUnitItemId -> {
-                showDisplaySettingDialog(this,tempDisplaySettingManager)
+                showDisplaySettingDialog(this, tempDisplaySettingManager)
                 true //This will show that we have handled the click
             }
             else -> onOptionsItemSelected(item)
         }
     }
-
 
 
     //region lifecycle's other methods
@@ -138,12 +142,14 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "In MainActivity: onPause")
 
     }
+
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putString("weatherLogCat", "Hello there")
         super.onSaveInstanceState(outState)
         Log.d(TAG, "In MainActivity: onSaveInstanceState")
 
     }
+
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         Log.d(TAG, "MainActivity : onRestoreInstanceState() ")
