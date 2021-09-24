@@ -38,18 +38,6 @@ class MainActivity : AppCompatActivity() {
         tempDisplaySettingManager = TempDisplaySettingManager(this)
 
 
-        //Finding ids for necessary view fields from activity_main.xml
-        val enterZipCodeField: EditText = findViewById(R.id.zipCodeId)
-        val howIsWeatherButtonId: Button = findViewById(R.id.howIsWeatherButtonId)
-
-
-        //Setting up On-Click Listener for the button
-        howIsWeatherButtonId.setOnClickListener {
-            val zipCode = enterZipCodeField.text.toString()
-            if (zipCode.length == 6) forecastRepository.loadForecast(zipCode)
-            else Toast.makeText(this, R.string.zipcode_error_message, Toast.LENGTH_SHORT).show()
-        }
-
         Log.d(TAG, "In MainActivity: onCreate")
 
 

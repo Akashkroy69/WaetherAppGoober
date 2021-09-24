@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_dark"
     tools:context=".location.LocationEntryFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/titleId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_your_zipcode"
+        android:textSize="@dimen/title_text_size"
+        app:layout_constraintBottom_toTopOf="@+id/zipCodeId"
+        app:layout_constraintEnd_toEndOf="@+id/zipCodeId"
+        app:layout_constraintStart_toStartOf="@+id/zipCodeId" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/zipCodeId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="8"
+        android:hint="@string/zip_code"
+        android:importantForAutofill="no"
+        android:inputType="numberSigned"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.259" />
+
+    <ImageView
+        android:id="@+id/locationImageViewId"
+        android:layout_width="@dimen/location_Icon_size"
+        android:layout_height="@dimen/location_Icon_size"
+        app:layout_constraintBottom_toTopOf="@+id/titleId"
+        app:layout_constraintEnd_toEndOf="@+id/zipCodeId"
+        app:layout_constraintStart_toStartOf="@+id/zipCodeId"
+        app:srcCompat="@drawable/ic_baseline_add_location_24"
+        android:contentDescription="@string/location_icon" />
+
+    <Button
+        android:id="@+id/howIsWeatherButtonId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/how_s_the_weather"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/zipCodeId"
+        app:layout_constraintStart_toStartOf="@+id/zipCodeId"
+        app:layout_constraintTop_toBottomOf="@+id/zipCodeId" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,59 +9,14 @@
 
   <FrameLayout
       android:id="@+id/fragmentLocationEntryId"
-      android:layout_width="match_parent"
+      android:layout_width="0dp"
       android:layout_height="0dp"
-      app:layout_constraintHeight_percent=".3"
-      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent" />
+      app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/titleId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/enter_your_zipcode"
-        android:textSize="@dimen/title_text_size"
-        app:layout_constraintBottom_toTopOf="@+id/zipCodeId"
-        app:layout_constraintEnd_toEndOf="@+id/zipCodeId"
-        app:layout_constraintStart_toStartOf="@+id/zipCodeId" />
 
-    <EditText
-        android:id="@+id/zipCodeId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="8"
-        android:hint="@string/zip_code"
-        android:importantForAutofill="no"
-        android:inputType="numberSigned"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentLocationEntryId"
-        app:layout_constraintVertical_bias="0.259" />
-
-    <ImageView
-        android:id="@+id/locationImageViewId"
-        android:layout_width="@dimen/location_Icon_size"
-        android:layout_height="@dimen/location_Icon_size"
-        app:layout_constraintBottom_toTopOf="@+id/titleId"
-        app:layout_constraintEnd_toEndOf="@+id/zipCodeId"
-        app:layout_constraintStart_toStartOf="@+id/zipCodeId"
-        app:srcCompat="@drawable/ic_baseline_add_location_24"
-        android:contentDescription="@string/location_icon" />
-
-    <Button
-        android:id="@+id/howIsWeatherButtonId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/how_s_the_weather"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/zipCodeId"
-        app:layout_constraintStart_toStartOf="@+id/zipCodeId"
-        app:layout_constraintTop_toBottomOf="@+id/zipCodeId" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/forecastItemRVId"
@@ -70,7 +25,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/howIsWeatherButtonId"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentLocationEntryId"
         app:layout_constraintVertical_bias="1.0"
         android:background="@color/recyclerView_bg_Color"/>
 
