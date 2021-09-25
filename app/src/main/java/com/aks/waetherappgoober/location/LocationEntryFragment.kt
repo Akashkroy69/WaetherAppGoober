@@ -13,7 +13,7 @@ import android.widget.Toast
 import com.aks.waetherappgoober.R
 
 class LocationEntryFragment : Fragment() {
-
+    //setting up the AppNavigator interface
     private lateinit var appNavigator: AppNavigator
 
     override fun onAttach(context: Context) {
