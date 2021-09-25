@@ -1,5 +1,7 @@
 package com.aks.waetherappgoober.location
 
+import AppNavigator
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +13,13 @@ import android.widget.Toast
 import com.aks.waetherappgoober.R
 
 class LocationEntryFragment : Fragment() {
+
+    private lateinit var appNavigator: AppNavigator
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        appNavigator = context as AppNavigator
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +39,14 @@ class LocationEntryFragment : Fragment() {
         //Setting up On-Click Listener for the button
         howIsWeatherButtonId.setOnClickListener {
             val zipCode = enterZipCodeField.text.toString()
-            if (zipCode.length == 6) Toast.makeText(requireContext(), "ZipCode Entered correctly ", Toast.LENGTH_SHORT).show()
-            else Toast.makeText(requireContext(), R.string.zipcode_error_message, Toast.LENGTH_SHORT).show()
+            if (zipCode.length == 6) {
+                appNavigator.navigateToCurrentForecast(zipCode)
+            }
+            else Toast.makeText(
+                requireContext(),
+                R.string.zipcode_error_message,
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
 

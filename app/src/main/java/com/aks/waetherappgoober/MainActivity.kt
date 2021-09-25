@@ -1,5 +1,6 @@
 package com.aks.waetherappgoober
 
+import AppNavigator
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aks.waetherappgoober.details.ForecastDetailsActivity
 import com.aks.waetherappgoober.location.LocationEntryFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AppNavigator {
     val TAG = "weatherLogCat"
 
     //a reference for the forecast Repository.
@@ -92,6 +93,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(intentForForecastDetailsActivity)
     }
 
+    override fun navigateToCurrentForecast(zipcode: String) {
+        forecastRepository.loadForecast(zipcode)
+    }
+
     //For adding a drop down Option Menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater =
@@ -153,5 +158,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "In MainActivity: onDestroy")
 
     }
+
+
     //endregion lifecycle's other methods.
 }
