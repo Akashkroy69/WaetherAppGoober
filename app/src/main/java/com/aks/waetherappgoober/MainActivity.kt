@@ -1,7 +1,6 @@
 package com.aks.waetherappgoober
 
-import AppNavigator
-import android.content.DialogInterface
+import com.aks.waetherappgoober.navigator.AppNavigator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,10 +8,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,38 +38,7 @@ class MainActivity : AppCompatActivity(), AppNavigator {
         Log.d(TAG, "In MainActivity: onCreate")
 
 
-        //setting up Recycler view
-        // For setting up recycler view we need to: 1. create a reference for RV, 2. set up LayOut Manger
-        // 3. Set up RV Adapter-> For Adapter we need to set up : 1. Adapter, 2. ViewHolder 3. Item callback
 
-        //1. Creating a reference for recycler view.
-        val forecastItemsRVId: RecyclerView = findViewById(R.id.forecastItemRVId)
-        //2.setting up RV's layoutManager Property as Linear Layout Manager
-        forecastItemsRVId.layoutManager = LinearLayoutManager(this)
-        //3. Adapter. We created and set up the system for Adapter and ViewHolder which is needed by the RecyclerView
-        //see implementation in DailyForecastAdapter() class.
-        //A ref for the Adapter class
-        val dailyForecastAdapter = DailyForecastAdapter(tempDisplaySettingManager) { forecastItem ->
-            val message = getString(
-                R.string.string_format_for_toasting_values_fromForecastItem,
-                forecastItem.temperature,
-                forecastItem.description
-            )
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-
-            passForecastDetailsUsingIntent(forecastItem)
-        }
-        forecastItemsRVId.adapter = dailyForecastAdapter
-
-        //creating an observer in context of LveData
-        val weeklyForecastObserver = Observer<List<DailyForecast>> {
-            //This field is used to update RecyclerView and lifecycle adapter.
-            //Toast.makeText(this, "Forecast Loaded", Toast.LENGTH_SHORT).show()
-
-            //we have an RV adapter.
-            dailyForecastAdapter.submitList(it)
-        }
-        forecastRepository.weeklyForecast.observe(this, weeklyForecastObserver)
 
         supportFragmentManager
             .beginTransaction()
@@ -81,17 +46,7 @@ class MainActivity : AppCompatActivity(), AppNavigator {
             .commit()
     }
 
-    //method for navigating to a new Activity using an intent.
-    private fun passForecastDetailsUsingIntent(forecastItem: DailyForecast) {
-        val intentForForecastDetailsActivity = Intent(this, ForecastDetailsActivity::class.java)
 
-        //for attaching extra values and data with the intent which is being used to invoke an Activity, here ForecastDetailsActivity
-        //here we are going to pass temperature and description value using intent
-        intentForForecastDetailsActivity.putExtra("key_temp", forecastItem.temperature)
-        intentForForecastDetailsActivity.putExtra("key_description", forecastItem.description)
-
-        startActivity(intentForForecastDetailsActivity)
-    }
 
     override fun navigateToCurrentForecast(zipcode: String) {
         forecastRepository.loadForecast(zipcode)
