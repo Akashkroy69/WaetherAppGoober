@@ -13,13 +13,13 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aks.waetherappgoober.details.ForecastDetailsActivity
+import com.aks.waetherappgoober.forecast.ForecastFragmentUsingRV
 import com.aks.waetherappgoober.location.LocationEntryFragment
 
 class MainActivity : AppCompatActivity(), AppNavigator {
     val TAG = "weatherLogCat"
 
-    //a reference for the forecast Repository.
-    private val forecastRepository = ForecastRepository()
+   // var forecastRepository = ForecastRepository()
 
     //A reference for TempDisplaySettingManager
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
@@ -47,9 +47,12 @@ class MainActivity : AppCompatActivity(), AppNavigator {
     }
 
 
-
     override fun navigateToCurrentForecast(zipcode: String) {
-        forecastRepository.loadForecast(zipcode)
+        //forecastRepository.loadForecast(zipcode)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragmentLocationEntryId, ForecastFragmentUsingRV())
+            .commit()
     }
 
     //For adding a drop down Option Menu

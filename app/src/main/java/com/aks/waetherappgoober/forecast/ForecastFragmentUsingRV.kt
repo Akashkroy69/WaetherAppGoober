@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aks.waetherappgoober.*
 import com.aks.waetherappgoober.details.ForecastDetailsActivity
+import com.aks.waetherappgoober.location.LocationEntryFragment
 
 class ForecastFragmentUsingRV : Fragment() {
 
@@ -72,7 +73,8 @@ class ForecastFragmentUsingRV : Fragment() {
 
     //method for navigating to a new Activity using an intent.
     private fun passForecastDetailsUsingIntent(forecastItem: DailyForecast) {
-        val intentForForecastDetailsActivity = Intent(requireContext(), ForecastDetailsActivity::class.java)
+        val intentForForecastDetailsActivity =
+            Intent(requireContext(), ForecastDetailsActivity::class.java)
 
         //for attaching extra values and data with the intent which is being used to invoke an Activity, here ForecastDetailsActivity
         //here we are going to pass temperature and description value using intent
