@@ -1,5 +1,6 @@
 package com.aks.waetherappgoober.forecast
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,8 +14,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aks.waetherappgoober.*
 import com.aks.waetherappgoober.details.ForecastDetailsActivity
 import com.aks.waetherappgoober.location.LocationEntryFragment
+import com.aks.waetherappgoober.navigator.AppNavigator
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class ForecastFragmentUsingRV : Fragment() {
+class ForecastFragmentUsingRV() : Fragment() {
+
+    private lateinit var appNavigator: AppNavigator
 
     //a reference for the forecast Repository.
     private val forecastRepository = ForecastRepository()
@@ -23,10 +28,18 @@ class ForecastFragmentUsingRV : Fragment() {
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
 
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        appNavigator = context as AppNavigator
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        val zipcode = arguments?.getString(KEY_ZIPCODE)
+
         tempDisplaySettingManager = TempDisplaySettingManager(requireContext())
 
         // Inflate the layout for this fragment
@@ -66,7 +79,16 @@ class ForecastFragmentUsingRV : Fragment() {
         }
         forecastRepository.weeklyForecast.observe(viewLifecycleOwner, weeklyForecastObserver)
 
+        if (zipcode != null) {
+            forecastRepository.loadForecast(zipcode)
+        }
 
+        //
+        val buttonForTransitingToLocationEntryButtonId =
+            view.findViewById<FloatingActionButton>(R.id.buttonForTransitingToLocationEntryButtonId)
+        buttonForTransitingToLocationEntryButtonId.setOnClickListener {
+            appNavigator.navigateToLocationEntryFragment()
+        }
 
         return view
     }
@@ -82,5 +104,24 @@ class ForecastFragmentUsingRV : Fragment() {
         intentForForecastDetailsActivity.putExtra("key_description", forecastItem.description)
 
         startActivity(intentForForecastDetailsActivity)
+    }
+
+    companion object {
+        private const val KEY_ZIPCODE = "key_zipcode"
+
+        fun setUpZipcodeInBundleANDargument(zipcode: String): ForecastFragmentUsingRV {
+            val fragmentUsingRV = ForecastFragmentUsingRV()
+
+            val args = Bundle()
+
+            args.putString(KEY_ZIPCODE, zipcode)
+
+            //Read the hint-documentation. This property invokes the setArgument() for setting up the arguments for the
+            // constructor which can be accessed
+            //
+            fragmentUsingRV.arguments = args
+
+            return fragmentUsingRV
+        }
     }
 }

@@ -1,18 +1,12 @@
 package com.aks.waetherappgoober
 
 import com.aks.waetherappgoober.navigator.AppNavigator
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.aks.waetherappgoober.details.ForecastDetailsActivity
 import com.aks.waetherappgoober.forecast.ForecastFragmentUsingRV
 import com.aks.waetherappgoober.location.LocationEntryFragment
 
@@ -42,7 +36,7 @@ class MainActivity : AppCompatActivity(), AppNavigator {
 
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragmentLocationEntryId, LocationEntryFragment())
+            .add(R.id.containerForFragmentsOnMainActivityId, LocationEntryFragment())
             .commit()
     }
 
@@ -51,7 +45,17 @@ class MainActivity : AppCompatActivity(), AppNavigator {
         //forecastRepository.loadForecast(zipcode)
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentLocationEntryId, ForecastFragmentUsingRV())
+            //replace() needs container ID and an instance of Fragment which has to be glued in the container.
+            // ForecastFragmentUsingRV.setUpZipcodeInBundleANDargument(zipcode) takes the zipcode which has
+            // been sent by LocationEntryFragment() 
+            .replace(R.id.containerForFragmentsOnMainActivityId, ForecastFragmentUsingRV.setUpZipcodeInBundleANDargument(zipcode))
+            .commit()
+    }
+
+    override fun navigateToLocationEntryFragment() {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.containerForFragmentsOnMainActivityId, LocationEntryFragment())
             .commit()
     }
 
