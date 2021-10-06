@@ -40,7 +40,7 @@ class LocationEntryFragment : Fragment() {
         howIsWeatherButtonId.setOnClickListener {
             val zipCode = enterZipCodeField.text.toString()
             if (zipCode.length == 6) {
-                appNavigator.navigateToCurrentForecast(zipCode)
+                appNavigator.navigateToForecastFragmentUsingRV(zipCode)
             }
             else Toast.makeText(
                 requireContext(),

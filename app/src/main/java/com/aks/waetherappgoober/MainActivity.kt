@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), AppNavigator {
     //A reference for TempDisplaySettingManager
     private lateinit var tempDisplaySettingManager: TempDisplaySettingManager
 
-    //region set up methods
+    //region onCreate
     override fun onCreate(savedInstanceState: Bundle?) {
 
         //Setting up for inflating a layout.
@@ -39,9 +39,15 @@ class MainActivity : AppCompatActivity(), AppNavigator {
             .add(R.id.containerForFragmentsOnMainActivityId, LocationEntryFragment())
             .commit()
     }
+    //endregion onCreate
 
 
-    override fun navigateToCurrentForecast(zipcode: String) {
+    //region methods for navigating to fragments
+
+    //Question: Why all navigation is being done from MainActivity?
+    //--> All the Fragments are sitting on the MainActivity. So this activity can access A Fragment Manager using supportFragmentManager
+    // which can manage the fragments going to sit on top of it.
+    override fun navigateToForecastFragmentUsingRV(zipcode: String) {
         //forecastRepository.loadForecast(zipcode)
         supportFragmentManager
             .beginTransaction()
@@ -58,8 +64,10 @@ class MainActivity : AppCompatActivity(), AppNavigator {
             .replace(R.id.containerForFragmentsOnMainActivityId, LocationEntryFragment())
             .commit()
     }
+    //endregion methods for navigating to fragments
 
-    //For adding a drop down Option Menu
+
+    //region For adding a drop down Option Menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater =
             menuInflater //<- This is Kotlin's idiomatic way to access getMenuInflater()
@@ -77,7 +85,7 @@ class MainActivity : AppCompatActivity(), AppNavigator {
             else -> onOptionsItemSelected(item)
         }
     }
-
+    //endregion
 
     //region lifecycle's other methods
     override fun onStart() {
