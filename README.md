@@ -86,4 +86,5 @@ I am creating this app as part of my learning process. I have created some apps 
              .commit()
          This code will add the fragment to the MainActivity but the fragment will come over the other UI elements.
          To resolve this issue we have declared a view component in the activity_main.xml file; FrameLayout
-       
+ #7-10-21
+        Starting to refactor for shifting Navigation on Navigation Architecture Component
