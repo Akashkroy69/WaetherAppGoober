@@ -88,3 +88,21 @@ I am creating this app as part of my learning process. I have created some apps 
          To resolve this issue we have declared a view component in the activity_main.xml file; FrameLayout
  #7-10-21
         Starting to refactor for shifting Navigation on Navigation Architecture Component
+ #11-10-21
+           What is Navigation Component Architecture?
+           Answer: NCA is a combination of libraries, tools, and plugins which help us manage fragments and navigation and Navigation UI under one roof.
+           
+           Benefits: 
+            Simplifies Navigation setup.
+            Automates Fragment transaction.
+            Handles back stack.
+            Typesafe argument passing.
+            Handles transition Animation
+            Simple deep link handling
+            Puts navigation pattern in one place as a graph which can be seen visually.
+           
+           
+           In our app, Why Navigation Architecture Component?
+           We in this app are dealing with many fragments and we have to navigate through them. Till now we are doing this manually, or say we are doing the navigation by a self-made system in which we made an AppNavigator Interface or we are doing that using Intents.
+                  Apart from that, we would like to introduce a lot of things like bottom navigation. And we will have to manage the back-stack and many things.
+           Conclusion: It’s a difficult thing to manage Fragments and to navigate through them. So GOOGlE and ANDROID have provided us with a system called Navigation Architecture Component.
